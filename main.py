@@ -111,9 +111,9 @@ def plot_simulation(simulated):
 
     fig, ax = plt.subplots(ncols=3, figsize=(7, 2.5), dpi=200, constrained_layout=True)
 
-    ax[0].plot(simulated["min"], simulated["F"])
-    ax[1].plot(simulated["min"], simulated["Ac"])
-    ax[2].plot(simulated["min"], simulated["An"])
+    ax[0].plot(simulated["min"], simulated["F"], color = "C0")
+    ax[1].plot(simulated["min"], simulated["Ac"], color = "C1")
+    ax[2].plot(simulated["min"], simulated["An"], color = "C2")
 
     ax[0].set_ylabel('EDC [mM]')
     ax[1].set_ylabel('Precursor [mM]')
