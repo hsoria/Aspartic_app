@@ -112,7 +112,7 @@ def plot_simulation(simulated):
 
 
 
-    fig, ax = plt.subplots(ncols=3, figsize=(8, 2.5), dpi = 200, sharex=True)
+    fig, ax = plt.subplots(ncols=3, figsize=(8, 3), dpi = 200, sharex=True)
 
     ax[0].plot(simulated["min"], simulated["F"])
     ax[1].plot(simulated["min"], simulated["Ac"])
@@ -126,6 +126,7 @@ def plot_simulation(simulated):
     ax[0].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
     ax[1].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
     ax[2].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
+    
     plt.tight_layout()
 
     # Display the plot using Streamlit
