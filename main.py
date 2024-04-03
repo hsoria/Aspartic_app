@@ -102,7 +102,7 @@ def get_fitted_curve(initial_conditions, tspan, params):
 def plot_simulation(simulated):
     colors = ["#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#999999", "#F0E442", "#0072B2", "#D55E00"]
     palette = sns.color_palette(colors)
-    plt.figure(10,10)
+    
     sns.set_theme(context='notebook', style='ticks', 
                   font_scale=1.3, 
                   rc={"lines.linewidth": 1.6, 'axes.linewidth': 1.6, 
@@ -123,7 +123,7 @@ def plot_simulation(simulated):
     ax[1].set(xlabel="Time [min]", xticks=np.linspace(0, simulated["min"].iloc[-1], 3))
     ax[2].set(xlabel="Time [min]", xticks=np.linspace(0, simulated["min"].iloc[-1], 3))
 
-    plt.tight_layout()
+    plt.tight_layout(w_pad=3)
 
     # Display the plot using Streamlit
     st.pyplot(fig)
