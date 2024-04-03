@@ -109,7 +109,7 @@ def plot_simulation(simulated):
                       "xtick.major.width": 1.5, "ytick.major.width": 1.5}, 
                   palette=palette)
 
-    fig, ax = plt.subplots(ncols=3, figsize=(8, 2.5), dpi=100)
+    fig, ax = plt.subplots(nrows=3, figsize=(8, 2.5), dpi=100)
 
     ax[0].plot(simulated["min"], simulated["F"])
     ax[1].plot(simulated["min"], simulated["Ac"])
