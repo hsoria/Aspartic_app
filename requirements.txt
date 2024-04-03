@@ -3,7 +3,6 @@ pandas
 scipy
 lmfit
 numdifftools
-PIL (Python Imaging Library)
 scikit-learn (sklearn)
 numpy
 matplotlib
