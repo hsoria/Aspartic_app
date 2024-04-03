@@ -104,9 +104,9 @@ def plot_simulation(simulated):
     palette = sns.color_palette(colors)
     
     sns.set_theme(context='notebook', style='ticks', 
-                  font_scale=1.3, 
-                  rc={"lines.linewidth": 1.6, 'axes.linewidth': 1.6, 
-                      "xtick.major.width": 1.6, "ytick.major.width": 1.6}, 
+                  font_scale=1.8, 
+                  rc={"lines.linewidth": 3, 'axes.linewidth': 3, 
+                      "xtick.major.width": 3, "ytick.major.width": 3}, 
                   palette=palette)
 
     fig, ax = plt.subplots(ncols=3, figsize=(20, 5), dpi=200)
