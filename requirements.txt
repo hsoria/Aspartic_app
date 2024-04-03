@@ -3,7 +3,7 @@ pandas
 scipy
 lmfit
 numdifftools
-scikit-learn (sklearn)
+scikit-learn
 numpy
 matplotlib
 seaborn
