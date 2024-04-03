@@ -33,43 +33,52 @@ def kinetic_plotting(z, t, params):
     return [dFdt, dAcdt, dAndt, dWdt]
 
 def streamlit_main():
-    st.title("Variable Input")
+    st.title("Variable Input in mM and min as units")
     
     # Dictionary of parameter sets
     param_sets = {
-        "RG3 pH 5.3": [4.5e-3, 0.8, 1, 1],
-        "Another Set": [1e-3, 0.5, 2, 0.5],
-        "Yet Another Set": [2e-3, 0.7, 1.5, 1.2]
+        "Ac-FRGRGRGD-OH,  pH = 5.3, EDC": [4.5e-3, 0.0108, 0.4, .51],
+        "Ac-FRGRGRGD-OH, pH = 5.3, DIC": [0.1764, 0.102, 1.34, 0.786],
+        "Ac-D-OH, pH = 5.3, EDC": [4.5e-3, 0.0198, 1., 1.8],
+        "Custom": None  # Placeholder for custom parameters
     }
-
-    # Dropdown menu to select parameter set
-    selected_set = st.selectbox("Select Parameter Set", list(param_sets.keys()))
-
-    # Retrieve selected parameter set
-    selected_params = param_sets[selected_set]
-
     
-    # Input fields for the variables
-    st.write("## Kinetic constants")
+    # Dropdown menu to select parameter set
+    selected_set = st.selectbox("# Select kinetic constant set", list(param_sets.keys()))
 
-    k0 = st.number_input("Enter k0", value=float(selected_params[0]), format="%.10f")
-    k1 = st.number_input("Enter k1", value=float(selected_params[1]), format="%.10f")
-    a = st.number_input("Enter a", value=float(selected_params[2]), format="%.10f")
-    k4 = st.number_input("Enter k4", value=float(selected_params[3]), format="%.10f")
+    # Check if "Custom" is selected
+    if selected_set == "Custom":
+        # Input fields for custom parameters
+        st.write("## Custom Parameters")
+        k0 = st.number_input("Enter k0", format="%.10f")
+        k1 = st.number_input("Enter k1", format="%.10f")
+        a = st.number_input("Enter a", format="%.10f")
+        k4 = st.number_input("Enter k4", format="%.10f")
+        params = [k0, k1, a, k4]
+        st.write("Custom Parameters:", params)
+    else:
+        # Retrieve selected parameter set
+        params = param_sets[selected_set]
+        st.write("Parameters:", params)
+    
+
+
+    k0 = params[0]
+    k1 = params[1]
+    a = params[2]
+    k4 = params[3]
 
     # Input fields for the variables
     st.write("## Initial conditions")
     F = st.number_input("Enter EDC concentration [mM]", value=float(20), format="%.2f")
     Ac = st.number_input("Enter Precursor concentration [mM]", value=float(10), format="%.2f")
 
-    
     t = st.number_input("Final simulation time [min]", value=200)
 
     tspan = np.linspace(0, t, 10000)
 
-
-    params = [k0, k1, a, k4]
     initial_conditions = [F, Ac, 0, 0]
+    params = [k0, k1, a, k4]
 
     return params, initial_conditions, tspan
 
