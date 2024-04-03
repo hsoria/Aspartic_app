@@ -100,7 +100,6 @@ def get_fitted_curve(initial_conditions, tspan, params):
     return simulated
 
 def plot_simulation(simulated):
-
     colors = ["#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#999999", "#F0E442", "#0072B2", "#D55E00"]
     palette = sns.color_palette(colors)
 
@@ -110,24 +109,22 @@ def plot_simulation(simulated):
                       "xtick.major.width": 1.6, "ytick.major.width": 1.6}, 
                   palette=palette)
 
-
-
-    fig, ax = plt.subplots(ncols=3, figsize=(16, 3), dpi = 200)
+    fig, ax = plt.subplots(ncols=3, figsize=(8, 2.5), dpi=200)
 
     ax[0].plot(simulated["min"], simulated["F"])
     ax[1].plot(simulated["min"], simulated["Ac"])
     ax[2].plot(simulated["min"], simulated["An"])
 
     ax[0].set_ylabel('EDC [mM]')
-    ax[1].set_ylabel('Precursor [mM]')
-    ax[2].set_ylabel('Anhydride [mM]')
+    ax[1].set_ylabel('Precursor [min]')
+    ax[2].set_ylabel('Anhydride [min]')
 
+    ax[0].set(xlabel="Time [min]", xticks=np.linspace(0, simulated["min"].iloc[-1], 3))
+    ax[1].set(xlabel="Time [min]", xticks=np.linspace(0, simulated["min"].iloc[-1], 3))
+    ax[2].set(xlabel="Time [min]", xticks=np.linspace(0, simulated["min"].iloc[-1], 3))
 
-    ax[0].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
-    ax[1].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
-    ax[2].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
-    
     plt.tight_layout()
+
     # Display the plot using Streamlit
     st.pyplot(fig)
 
