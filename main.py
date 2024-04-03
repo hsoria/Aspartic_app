@@ -127,7 +127,6 @@ def plot_simulation(simulated):
     ax[1].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
     ax[2].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
     
-    plt.tight_layout()
 
     # Display the plot using Streamlit
     st.pyplot(fig)
