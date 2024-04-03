@@ -35,13 +35,27 @@ def kinetic_plotting(z, t, params):
 def streamlit_main():
     st.title("Variable Input")
     
+    # Dictionary of parameter sets
+    param_sets = {
+        "RG3 pH 5.3": [4.5e-3, 0.8, 1, 1],
+        "Another Set": [1e-3, 0.5, 2, 0.5],
+        "Yet Another Set": [2e-3, 0.7, 1.5, 1.2]
+    }
+
+    # Dropdown menu to select parameter set
+    selected_set = st.selectbox("Select Parameter Set", list(param_sets.keys()))
+
+    # Retrieve selected parameter set
+    selected_params = param_sets[selected_set]
+
+    
     # Input fields for the variables
     st.write("## Kinetic constants")
 
-    k0 = st.number_input("Enter k0", value=1.8e-4, format="%.10f")
-    k1 = st.number_input("Enter k1", value=4.79e-3, format="%.10f")
-    a = st.number_input("Enter a", value=0.3, format="%.10f")
-    k4 = st.number_input("Enter k4", value=8.38e-1, format="%.10f")
+    k0 = st.number_input("Enter k0", value=float(selected_params[0]), format="%.10f")
+    k1 = st.number_input("Enter k1", value=float(selected_params[1]), format="%.10f")
+    a = st.number_input("Enter a", value=float(selected_params[2]), format="%.10f")
+    k4 = st.number_input("Enter k4", value=float(selected_params[3]), format="%.10f")
 
     # Input fields for the variables
     st.write("## Initial conditions")
@@ -69,7 +83,7 @@ def plot_simulation(simulated):
     colors = ["#E69F00", "#56B4E9", "#009E73", "#CC79A7", "#999999", "#F0E442", "#0072B2", "#D55E00"]
     palette = sns.color_palette(colors)
 
-    sns.set_theme(context='notebook', style='ticks', font='Arial', 
+    sns.set_theme(context='notebook', style='ticks', 
                   font_scale=1.3, 
                   rc={"lines.linewidth": 1.6, 'axes.linewidth': 1.6, 
                       "xtick.major.width": 1.6, "ytick.major.width": 1.6}, 
