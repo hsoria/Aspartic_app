@@ -33,8 +33,17 @@ def kinetic_plotting(z, t, params):
     return [dFdt, dAcdt, dAndt, dWdt]
 
 def streamlit_main():
-    st.title("Variable Input in mM and min as units")
-    
+    st.title("Kinetic simulator")
+    st.subheader("You can choose between different set of conditions or try your own k values")
+    st.text("K values are in mM and min as units.")
+    st.text("k0: F➝W")
+    st.text("k1: F + Ac ➝ O")
+    st.text("k2: O ➝ An + W")
+    st.text("k3: O ➝ Ac + W")
+    st.text("k4: An ➝ Ac")
+    st.text("We assume [O] ~ 0  so a = k3/k2")
+
+
     # Dictionary of parameter sets
     param_sets = {
         "Ac-FRGRGRGD-OH,  pH = 5.3, EDC": [4.5e-3, 0.0108, 0.4, .51],
@@ -44,7 +53,7 @@ def streamlit_main():
     }
     
     # Dropdown menu to select parameter set
-    selected_set = st.selectbox("# Select kinetic constant set", list(param_sets.keys()))
+    selected_set = st.selectbox("Select kinetic constant set", list(param_sets.keys()))
 
     # Check if "Custom" is selected
     if selected_set == "Custom":
@@ -59,7 +68,10 @@ def streamlit_main():
     else:
         # Retrieve selected parameter set
         params = param_sets[selected_set]
-        st.write("Parameters:", params)
+        st.write("k0:", params[0])
+        st.write("k1:", params[1])
+        st.write("a:", params[2])
+        st.write("k4:", params[3])
     
 
 
