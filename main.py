@@ -112,15 +112,15 @@ def plot_simulation(simulated):
 
 
 
-    fig, ax = plt.subplots(ncols=3, figsize=(4, 3), dpi = 200)
+    fig, ax = plt.subplots(ncols=3, figsize=(10, 3), dpi = 200)
 
     ax[0].plot(simulated["min"], simulated["F"])
     ax[1].plot(simulated["min"], simulated["Ac"])
     ax[2].plot(simulated["min"], simulated["An"])
 
     ax[0].set_ylabel('EDC [mM]')
-    ax[1].set_ylabel('Precursor [min]')
-    ax[2].set_ylabel('Anhydride [min]')
+    ax[1].set_ylabel('Precursor [mM]')
+    ax[2].set_ylabel('Anhydride [mM]')
 
 
     ax[0].set(xlabel = "Time [min]", xticks = np.linspace(0, simulated["min"].iloc[-1], 3))
