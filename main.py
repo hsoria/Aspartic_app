@@ -35,7 +35,7 @@ def kinetic_plotting(z, t, params):
 def streamlit_main():
     st.title("Kinetic simulator")
     st.subheader("You can choose between different set of conditions or try your own k values")
-    st.text("K values are in **mM** and **min** as units.")
+    st.text("K values are in mM and min as units.")
     st.text("k0: F➝W")
     st.text("k1: F + Ac ➝ O")
     st.text("k2: O ➝ An + W")
