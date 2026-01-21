@@ -127,8 +127,36 @@ def plot_simulation(simulated):
     # Display the plot using Streamlit
     st.pyplot(fig)
 
+
+def download_simulation(simulated: pd.DataFrame):
+    st.write("## Download simulated curves")
+
+    # CSV
+    csv_bytes = simulated.to_csv(index=False).encode("utf-8")
+    st.download_button(
+        label="Download CSV",
+        data=csv_bytes,
+        file_name="simulated_curves.csv",
+        mime="text/csv",
+    )
+
+    # Optional: Excel
+    import io
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(buffer, engine="openpyxl") as writer:
+        simulated.to_excel(writer, index=False, sheet_name="simulation")
+    st.download_button(
+        label="Download Excel (.xlsx)",
+        data=buffer.getvalue(),
+        file_name="simulated_curves.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
+
+
 if __name__ == "__main__":
     params, initial_conditions, tspan = streamlit_main()
     simulated_data = get_fitted_curve(initial_conditions, tspan, params)
     plot_simulation(simulated_data)
+    download_simulation(simulated_data)
+
 
